@@ -266,7 +266,30 @@
 	];
 
 	TypeJig.WordSets.singleStrokeCVC = [
-		"saf", "sar", "sap", "sab", "sal", "sag", "sat", "sas", 
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
+		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop"
+		]
+	
+	TypeJig.WordSets.singleStrokeCVC2=[
+		"sar", "sap", "sab", "sal", "sag", "sat", "sas", 
 		"sad", "sof", "sor", "sop", "sob", "sol", "sog", "sot",
 		"sos", "sod", "sef", "ser", "sep", "seb", "sell", "seg", 
 		"set", "ses", "sed", "says", "suf", "sup", "sul", "sug", 
