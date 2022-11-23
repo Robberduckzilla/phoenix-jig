@@ -266,29 +266,6 @@
 	];
 
 	TypeJig.WordSets.singleStrokeCVC = [
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop",
-		"poop", "poop","poop","poop","poop","poop","poop","poop","poop","poop","poop"
-		]
-	
-	TypeJig.WordSets.singleStrokeCVC2=[
 		"sar", "sap", "sab", "sal", "sag", "sat", "sas", 
 		"sad", "sof", "sor", "sop", "sob", "sol", "sog", "sot",
 		"sos", "sod", "sef", "ser", "sep", "seb", "sell", "seg", 
