@@ -28,7 +28,7 @@ entries, and then randomly choose from the words in the current
 entry. But it may be better to use the `NGSL_all_forms` list which
 has been flattened and sorted by frequency.
 
-There are also a bunch of translations in `plover-translations.js` so it
+There are also a bunch of translations in `phoenix-translations.js` so it
 can display hints for the next word. Many words have more than one set
 of legitimate strokes, and it will show all of them unless you filter
 the given options with `TypeJig.longestTranslations` or
