@@ -545,18 +545,19 @@ function renderChart(strokes, elt) {
 }
 
 function renderResults(stats, strokes, elt, jig) {
-	var results = 'Time: ' + stats.time + ' - ' + Math.floor(stats.WPM)
-	if(stats.unit) {
-		results += ' ' + stats.unit
-	} else {
-		var plural = stats.errorCount===1 ? '' : 's'
-		results += ' WPM (chars per minute/5)'
-		if(stats.errorCount === 0) results += ' with no uncorrected errors!'
-		else results += ', adjusting for ' + stats.errorCount + ' incorrect word' + plural
-			+ ' (' + Math.floor(100*stats.accuracy) + '%) gives ' + Math.floor(stats.correctedWPM) + ' WPM.'
+	var results = 'Accuracy: ' + stats.accuracy + '\n' + 'Raw WPM: ' + stats.WPM + '\n' + 'Corrrect WPM: ' + stats.correctedWPM
+	// var results = 'Time: ' + stats.time + ' - ' + Math.floor(stats.WPM)
+	// if(stats.unit) {
+	// 	results += ' ' + stats.unit
+	// } else {
+	// 	var plural = stats.errorCount===1 ? '' : 's'
+	// 	results += ' WPM (chars per minute/5)'
+	// 	if(stats.errorCount === 0) results += ' with no uncorrected errors!'
+	// 	else results += ', adjusting for ' + stats.errorCount + ' incorrect word' + plural
+	// 		+ ' (' + Math.floor(100*stats.accuracy) + '%) gives ' + Math.floor(stats.correctedWPM) + ' WPM.'
 
-		results = strokeStats(strokes, stats.minutes) + '\n' + results
-	}
+	// 	results = strokeStats(strokes, stats.minutes) + '\n' + results
+	// }
 	results = '\n' + results
 	var start = elt.textContent.length
 	var end = start + results.length
@@ -569,9 +570,9 @@ function renderResults(stats, strokes, elt, jig) {
 	})
 	N(elt, "\n")
 
-	const chart = renderChart(strokes, elt)
+	// const chart = renderChart(strokes, elt)
 
 	elt.scrollIntoView(true)
 
-	return chart
+	return results
 }
