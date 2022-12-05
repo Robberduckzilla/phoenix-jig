@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Steno Jig</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<script src="type-jig.js"></script>
+	<script src="util.js"></script>
+	<script src="word-drill.js"></script>
+	<script src="number-sentences.js"></script>
+	<script src="steno-display.js"></script>
+	<script src="word-sets.js"></script>
+	<script src="phoenix-translations.js"></script>
+	<script src="chart.js"></script>
+	<link rel="stylesheet" type="text/css" href="font-roboto.css">
+</head>
+<body>
+
+<div id="form" class="wrapper">
+	<h1>Choose a drill...</h1>
+
+	<div class="form-section">
+		<div class="caption"><strong>Settings</strong> or whatever.</div><br>
+		<div name="live_wpm">
+			<label><input id="live_wpm" type="checkbox" name="live_wpm" value="0">Show Live WPM</label>
+		</div><br>
+
+		<div name="show_timer">
+			<label><input id="show_timer" type="checkbox" name="show_timer" value="0" checked>Show Timer</label>
+		</div><br>
+
+		<div name="show_stats">
+			<label><input id="show_stats" type="checkbox" name="show_stats" value="1" checked>Show Stats at End of Exercise</label>
+		</div><br>
+
+		<div name="speed">
+			<label><input id="wpm" type="number" name="wpm" value="" step="5"> Speed (words per minute)
+				(or <input type="checkbox" id="cpm" value="1"> x5 chars per minute) </label>
+		</div><br>
+
+		<div name="alt">
+			<label>Alternate with: <input id="alternate" type="text" name="alternate"></label>
+		</div>
+	</div>
+
+
+	<div class="form-section">
+		<div class="caption">Custom <strong>text</strong></div>
+
+		<form class="drill-options" id="custom" action="form.html">
+
+			<textarea name="drill"></textarea><br>
+			<input type="checkbox" name="type" value="shuffled"> Shuffle words.<br>
+			Or <input type="checkbox" name="shuffleLines" value="shuffled"> shuffle lines.<br>
+			Repeat <input type="number" name="repeat" min="1" max="100" step="1" value="1"> times.<br>
+
+			<button>Start Drill &rarr;</button>
+		</form>
+	</div>
+
+<div id="lesson" class="wrapper" style="display: none">
+	<div id="leftside">
+		<h3 id="lesson-name" class="center"></h3>
+		<div id="drill-content">
+			<div id="answer"></div>
+			<div id="exercise"></div>
+			<div id="results"></div>
+		</div>
+	</div>
+
+	<textarea id="input"></textarea>
+
+	<div id="nav">
+		<p id="strokes"></p>
+		<p id="clock" class="clock"></p>
+		<p id="live-wpm-display" class="wpm"></p>
+
+		<p class="center"><a id="again" title="Enter">&#8634; Restart <span class="shortcutkey">(Enter 3x)</span></a></p>
+		<p class="center"><a id="back" title="LeftArrow">&larr; Back to Menu <span class="shortcutkey">(LeftArrow)</span></a></p>
+	</div>
+</div>
+
+<script>
+function runExercise(fields) {
+	if(fields.drill === 'NumberSentences') exercise = numberSentences(fields);
+	else {
+		if(fields.last) {
+			fields.choose = fields.count
+			fields.count = Math.max(+fields.choose, fields.last - fields.first)
+		}
+		exercise = wordDrill(fields);
+	}
+	if(exercise) {
+		if(fields.hints) {
+			var strokes = document.getElementById('strokes');
+			if(fields.floating_hints) {
+				strokes.style.position = 'fixed';
+			}
+			var translations = TypeJig.shortestTranslations(TypeJig.Translations.Plover);
+			var hints = new StenoDisplay(strokes, translations, true);
+		}
+		var options = fields;
+
+		displayOnly('lesson');
+		return setExercise(exercise.name, exercise, hints, options);
+	}
+}
+
+function getSettings(evt) {
+	const hintButtons = document.getElementsByName('hints')
+	for(var radio of hintButtons) {
+		if(radio.checked) {
+			hiddenField(this, 'hints', radio.value)
+			break
+		}
+	}
+
+	var live_wpm = document.getElementById('live_wpm')
+	if(live_wpm.checked) hiddenField(this, 'live_wpm', live_wpm.value)
+
+	var show_timer = document.getElementById('show_timer')
+	hiddenField(this, 'show_timer', show_timer.checked ? show_timer.value : 'no')
+	var wpm = document.getElementById('wpm')
+	var cpm = document.getElementById('cpm')
+	if(cpm.checked) hiddenField(this, 'cpm', 5*wpm.value)
+	else hiddenField(this, 'wpm', wpm.value);
+
+	var alternate = document.getElementById('alternate')
+	hiddenField(this, 'alternate', alternate.value)
+}
+
+function runCustom(evt) {
+	evt.preventDefault();
+	getSettings.call(this);
+	var fields = getFormFields(this);
+	if(storageAvailable('localStorage')) {
+		localStorage.custom = fields.drill
+	}
+	if(fields.shuffleLines) {
+		// Don't shuffle words.
+		delete(fields.type);
+		// Pre-shuffle lines.
+		fields.drill = shuffle(fields.drill.trim().split(/\n+/m)).join(' ');
+	}
+	let drill =  fields.drill.trim().split(/\s+/m);
+	let n = +fields.repeat || 1;
+	TypeJig.WordSets.custom = [];
+	for(let i=0; i<n; ++i) TypeJig.WordSets.custom.push(...drill);
+	fields.drill = 'custom';
+	var jig = runExercise(fields);
+}
+
+window.onload = function() {
+	if(document.location.search !== '') {
+		runExercise(parseQueryString(document.location.search));
+	} else {
+		// Add event listeners to get settings before submitting.
+		var forms = document.querySelectorAll('form');
+		for(var i=0; i<forms.length; ++i) {
+			var form = forms[i]
+			if(form.id === 'custom') {
+				form.addEventListener('submit', runCustom);
+			} else {
+				if(form.elements.count && form.elements.last) {
+					const elts = form.elements
+					const setLast = function() {
+						const min = 1*elts.first.value + 1*elts.count.value
+						elts.last.value = Math.max(elts.last.value, min)
+						elts.last.min = min
+					}
+					elts.count.addEventListener('change', setLast)
+					elts.first.addEventListener('change', setLast)
+					elts.last.addEventListener('change', setLast)
+				}
+				form.addEventListener('submit', getSettings);
+			}
+		}
+	}
+}
+
+loadSettings()
+if(storageAvailable('localStorage') && localStorage.custom != null) {
+	let custom = document.getElementById('custom')
+	custom.elements.drill.value = localStorage.custom
+}
+</script>
+
+</body>
+</html>
