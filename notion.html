@@ -52,7 +52,7 @@
 	<div class="form-section">
 		<div class="caption">Custom <strong>text</strong></div>
 
-		<form class="drill-options" id="custom" action="form.html">
+		<form class="drill-options" id="custom" action="notion.html">
 
 			<textarea name="drill"></textarea><br>
 			<input type="checkbox" name="type" value="shuffled"> Shuffle words.<br>
@@ -76,7 +76,7 @@
 	<div style="display: none;" class="form-section">
 		<div class="caption">Most used <strong>words</strong> (once, in random order)</div>
 
-		<form id="most-used" class="drill-options" action="form.html">
+		<form id="most-used" class="drill-options" action="notion.html">
 			<input type="hidden" name="drill" value="NGSL_all_forms">
 			<input type="hidden" name="type" value="shuffled">
 
@@ -150,7 +150,7 @@
 	<div style="display: none;" class="form-section">
 		<div class="caption">Phonetic <strong>words</strong> that use exactly one starting <strong>consonant</strong> key, exactly one <strong>vowel</strong> key and exactly one ending <strong>consonant</strong>.</div>
 
-		<form class="drill-options" action="form.html">
+		<form class="drill-options" action="notion.html">
 			<input type="hidden" name="drill" value="singleStrokeCVC">
 			<input type="hidden" name="type" value="randomly">
 
@@ -165,7 +165,7 @@
 	<div style="display: none;" class="form-section">
 		<div class="caption"><strong>Numbers</strong> 1-99 in simple sentences</div>
 
-		<form class="drill-options" action="form.html">
+		<form class="drill-options" action="notion.html">
 			<input type="hidden" name="drill" value="NumberSentences">
 			<input type="hidden" name="type" value="randomly">
 
@@ -193,15 +193,15 @@
 		<div class="caption">Other drills.</div>
 		<ul>
 			<li><a href="two-key.html">Sentences which (mostly) only use two keys at once</a></li>
-			<li><a href="form.html?drill=shortAndLongA&type=shuffled&select=shuffled&hints=true">Short and Long A words</a></li>
-			<li><a href="form.html?drill=ST%20words&drill=SH%20words&drill=CH%20words&type=shuffled&hints=true">"st-", "sh-", and "ch-" words</a></li>
-			<li><a href="form.html?drill=-LD%20words&drill=-LT%20words&drill=-RT%20words&type=shuffled&hints=true">Simple "-ld", "-lt", and "-rt" words</a></li>
-			<li><a href="form.html?drill=%2bLD%20words&drill=%2bLT%20words&drill=%2bRT%20words&type=shuffled&hints=true">Extended "-ld", "-lt", and "-rt" words</a></li>
-			<li><a href="form.html?drill=-LD%20words&drill=-LT%20words&drill=-RT%20words&drill=%2bLD%20words&drill=%2bLT%20words&drill=%2bRT%20words&type=shuffled&hints=true">All "-ld", "-lt", and "-rt" words</a></li>
-			<li><a href="form.html?drill=d-/b-&type=randomly&timeLimit=3">D- and B- words</a></li>
-			<li><a href="form.html?drill=ite/ight&type=randomly&timeLimit=3">-ite/-ight words</a></li>
-			<li><a href="form.html?drill=nch&type=randomly&timeLimit=3">"nch" words</a></li>
-			<li><a href="form.html?drill=-ld/-lt&drill=-nj&type=randomly&timeLimit=5">"-nj" words mixed with "-ld/"/"-lt" ones.</a></li>
+			<li><a href="notion.html?drill=shortAndLongA&type=shuffled&select=shuffled&hints=true">Short and Long A words</a></li>
+			<li><a href="notion.html?drill=ST%20words&drill=SH%20words&drill=CH%20words&type=shuffled&hints=true">"st-", "sh-", and "ch-" words</a></li>
+			<li><a href="notion.html?drill=-LD%20words&drill=-LT%20words&drill=-RT%20words&type=shuffled&hints=true">Simple "-ld", "-lt", and "-rt" words</a></li>
+			<li><a href="notion.html?drill=%2bLD%20words&drill=%2bLT%20words&drill=%2bRT%20words&type=shuffled&hints=true">Extended "-ld", "-lt", and "-rt" words</a></li>
+			<li><a href="notion.html?drill=-LD%20words&drill=-LT%20words&drill=-RT%20words&drill=%2bLD%20words&drill=%2bLT%20words&drill=%2bRT%20words&type=shuffled&hints=true">All "-ld", "-lt", and "-rt" words</a></li>
+			<li><a href="notion.html?drill=d-/b-&type=randomly&timeLimit=3">D- and B- words</a></li>
+			<li><a href="notion.html?drill=ite/ight&type=randomly&timeLimit=3">-ite/-ight words</a></li>
+			<li><a href="notion.html?drill=nch&type=randomly&timeLimit=3">"nch" words</a></li>
+			<li><a href="notion.html?drill=-ld/-lt&drill=-nj&type=randomly&timeLimit=5">"-nj" words mixed with "-ld/"/"-lt" ones.</a></li>
 		</ul>
 
 		<p><strong>Note</strong> on Finger Drills.  Delete (plover v3) or disable (plover v4) all dictionaries but <code>commands.json</code> (in plover v3, delete all dictionaries and save to get the default config back). In plover v4, check out the plover-dict-control plugin which allows you to define strokes to switch dictionaries.</p>
@@ -221,9 +221,9 @@
 	<textarea id="input"></textarea>
 
 	<div id="nav">
-		<p id="strokes"></p>
-		<p id="clock" class="clock"></p>
-		<p id="live-wpm-display" class="wpm"></p>
+		<p style="display: none;" id="strokes"></p>
+		<p style="display: none;" id="clock" class="clock"></p>
+		<p style="display: none;" id="live-wpm-display" class="wpm"></p>
 
 		<p class="center"><a id="again" title="Enter">&#8634; Restart <span class="shortcutkey">(Enter 3x)</span></a></p>
 		<p class="center"><a id="back" title="LeftArrow">&larr; Back to Menu <span class="shortcutkey">(LeftArrow)</span></a></p>
