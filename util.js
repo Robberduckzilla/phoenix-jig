@@ -547,8 +547,8 @@ function renderChart(strokes, elt) {
 function renderResults(stats, strokes, elt, jig) {
 	var results = 'Accuracy: ' + Math.floor(100*stats.accuracy) + '% \n' 
 	results += 'Raw WPM: ' + Math.floor(stats.WPM) + '\n' 
-	results += 'Adjusted WPM: ' + Math.floor(stats.correctedWPM)
-	results += 'Error count: ' + stats.errorCount
+	results += 'Adjusted WPM: ' + Math.floor(stats.correctedWPM) + '\n'
+	results += 'Uncorrrected errors: ' + stats.errorCount
 
 	// var results = 'Time: ' + stats.time + ' - ' + Math.floor(stats.WPM)
 	// if(stats.unit) {
