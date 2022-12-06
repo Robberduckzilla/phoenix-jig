@@ -545,7 +545,7 @@ function renderChart(strokes, elt) {
 }
 
 function renderResults(stats, strokes, elt, jig) {
-	var results = 'Accuracy: ' + stats.accuracy + '\n' + 'Raw WPM: ' + stats.WPM + '\n' + 'Corrrect WPM: ' + stats.correctedWPM
+	var results = 'Accuracy: ' + Math.floor(100*stats.accuracy) + '\n' + 'Raw WPM: ' + Math.floor(stats.WPM) + '\n' + 'Adjusted WPM: ' + Math.floor(stats.correctedWPM)
 	// var results = 'Time: ' + stats.time + ' - ' + Math.floor(stats.WPM)
 	// if(stats.unit) {
 	// 	results += ' ' + stats.unit
@@ -563,16 +563,16 @@ function renderResults(stats, strokes, elt, jig) {
 	var end = start + results.length
 	elt.textContent += results
 
-	N(elt, N('h3', 'Corrected errors'))
-	errorsInContext(strokes, 2).forEach(s => {
-		renderStrokes(s, elt)
-		N(elt, N('hr'))
-	})
-	N(elt, "\n")
+	// N(elt, N('h3', 'Corrected errors'))
+	// errorsInContext(strokes, 2).forEach(s => {
+	// 	renderStrokes(s, elt)
+	// 	N(elt, N('hr'))
+	// })
+	// N(elt, "\n")
 
 	// const chart = renderChart(strokes, elt)
 
-	elt.scrollIntoView(true)
+	// elt.scrollIntoView(true)
 
 	return results
 }
